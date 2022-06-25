@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let [a, , b] = [1, 2, 3]; // 等号右边必须为可遍历的值，否则会报错
+        console.log(a, b);
+
+        let [foo = true] = []; // 当中括号中没有值或者为undefined时，才会取默认值
+        console.log("foo:", foo);
+
+        let data = { title: "标题", content: "内容" }
+        // let title = data.title;
+        let { title: title1, content: content } = data; // 解构赋值声明其实声明的是属性值
+        console.log("title1:", title1, "content:", content);
+
+        function fn ({ x: x = 3, y: y } = { x: 0, y: 0 }) { // = {} 为默认值 （使用默认值=》当实参为undefined时使用默认值）
+            return [x, y]
+        }
+
+        console.log(fn(false)) // 当实参不传参或者传undefined时使用默认值
+
+    </script>
+</body>
+
+</html>

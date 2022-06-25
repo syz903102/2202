@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>New Html</title>
+</head>
+
+<body>
+    <script>
+
+        /*
+            try{
+                // 将可能会出现异常的代码包裹
+            }catch(e){
+                if(e.startsWith("html")){
+                    reject({status:"no",msg:"服务器炸裂了"})
+                }else{
+                    reject({status:"no",msg:"服务器错误"})
+                }
+            }
+        */
+
+        // try {
+        //     console.log(noData);
+        // } catch (e) {
+        //     console.log(e); // 将报错原因以字符串方式打印出来
+        // }
+
+        const fn = () => {
+            return new Promise((resolve, reject) => {
+                $.post("/add", {}, function (data) {
+                    try {
+                        // data 处理
+                    } catch (e) {
+                        reject(e);
+                    }
+                    resolve(data);
+                })
+            })
+        }
+
+
+
+    </script>
+</body>
+
+</html>

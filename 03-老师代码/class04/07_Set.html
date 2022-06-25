@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Set   成员的值都是唯一的，没有重复的值。
+
+        /* 
+            add()方法向 Set 结构加入成员
+            delete()删除某个值，返回一个布尔值，表示删除是否
+            has(value)返回一个布尔值，表示该值是否为Set的成员。
+            clear()清除所有成员，没有返回值。
+            size属性表示set的长度
+        */
+
+        let arr = [2, 2, 5, 8, 5, 8, 5, 8, 9, 10];
+        let arr1 = [...new Set(arr)]; // 数组去重
+        console.log(arr1);
+
+    </script>
+</body>
+
+</html>

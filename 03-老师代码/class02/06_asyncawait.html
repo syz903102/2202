@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>New Html</title>
+</head>
+
+<body>
+    <script>
+        const fn1 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    // console.log("1");
+                    reject(1);
+                }, 300)
+            })
+        }
+
+        const fn2 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    // console.log("2");
+                    resolve(2);
+                }, 100)
+            })
+        }
+
+        const fn3 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    // console.log("3");
+                    resolve(3);
+                }, 200)
+            })
+        }
+
+        async function fn () {
+            console.log("001");
+            let f1 = await fn1();
+            console.log(f1);
+            return f1;
+
+        }
+
+        fn().catch((res) => {
+            console.log("错误:", res);
+        })
+
+
+    </script>
+</body>
+
+</html>

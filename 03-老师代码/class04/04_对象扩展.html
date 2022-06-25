@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let username = "ken";
+        let obj = {
+            title: "标题",
+            username,
+            say: function () {
+                console.log("1")
+            },
+            say1 () {
+                console.log("1")
+            },
+            say2: () => {
+                console.log("1")
+            }
+        }
+        let abc = "abc"
+        let obj1 = {}
+        obj1['a' + 'bc'] = 123;
+        console.log(obj1);
+        console.log(obj1['abc']); // 加引号:使用的是对象里面的属性名
+        console.log(obj1[abc]); // abc为变量代表"abc"
+
+
+    </script>
+</body>
+
+</html>

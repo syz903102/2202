@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+                this.title = "标题";
+            }
+
+            get name () {
+                return this._name;
+            }
+
+            set name (newValue) {
+                this._name = newValue;
+                /* 
+                    为什么加_
+                        如果不加下划线,this.name就会陷入死循环(其实就是无限调用set函数)
+                */
+            }
+
+            get age () {
+                return this._age;
+            }
+
+            set age (newValue) {
+                this._age = newValue;
+            }
+
+            say () {
+                console.log("say");
+            }
+        }
+
+        let obj = new Person("ken", 18);
+
+        obj.name = "123";
+        console.log(obj);
+
+        console.log(obj.age);
+        console.log(obj.name);
+        console.log(obj._name);
+
+
+
+    </script>
+</body>
+
+</html>

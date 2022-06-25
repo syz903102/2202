@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        插值表达式:{{a}}
+        <br>
+        {{fnd}}
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: { // 声明变量
+                a: 1,
+                b: {
+                    c: 1
+                },
+                d: 2
+            },
+            methods: { // 方法(放置所有函数)
+                fn () {
+                    this.a = 2;
+                }
+            },
+            watch: { // 监听值得变化
+                a: function (newVal, oldVal) {
+                    console.log(newVal, oldVal);
+                },
+                b: { // 监听c  "b.c"
+                    handler: function (newVal, oldVal) {
+                        console.log(newVal, oldVal);
+                    },
+                    immediate: true, // 进入页面就触发
+                    deep: true // 是否深度监听 (b为引用数据类型使用深度监听)
+                }
+            },
+            computed: { // 计算属性
+                fnd () {
+                    return this.d + 2;
+                }
+            }
+        });
+
+        // console.log(vm.$el)
+
+        vm.fn();
+        console.log(vm)
+
+
+        vm.a = 12;
+        // vm.b = 13;
+        vm.b.c = 2;
+
+    </script>
+</body>
+
+</html>

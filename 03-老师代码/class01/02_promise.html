@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>New Html</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和rejected（已失败）。
+        */
+
+        let promise = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log("123");
+                resolve();
+            }, 2000)
+        })
+
+        promise.then(function (res) {
+            console.log(1);
+        }).then(function () {
+            console.log(2);
+        })
+
+        /*
+            then(f,f)
+                promise成功时执行第一个回调函数
+                promise失败时执行第二个回调函数
+            catch(f)
+                promise失败时执行catch()方法
+            两个失败同时存在执行的区别:同时存在只执行then的第二个回调函数
+
+        */
+
+    </script>
+</body>
+
+</html>

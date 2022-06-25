@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>New Html</title>
+</head>
+
+<body>
+    <script>
+
+        /* 
+            var 和 let 和 const 区别:
+
+                一、var声明的变量会挂载在window上，而let和const声明的变量不会：
+
+                二、var声明变量存在变量提升，let和const不存在变量提升
+                什么是变量提升？
+                JavaScript 中，函数及变量的声明都将被提升到函数的最顶部。
+                JavaScript 中，变量可以在使用后声明，也就是变量可以先使用再声明。
+
+                三、let和const声明形成块作用域
+                顾名思义，就是只在当前代码块或者方法中起作用!!
+
+                四、同一作用域下let和const不能声明同名变量，而var可以
+
+                五、暂存死区
+
+                六、const
+
+                        * 　　1、一旦声明必须赋值,不能使用null占位。
+                        * 　　2、声明后不能再修改
+                        * 　　3、如果声明的是复合类型数据，可以修改其属性
+        */
+
+        ; (function () {
+            for (var i = 0; i < 10; i++) {
+
+            }
+            console.log(i);
+        })();
+
+
+
+        ; (function () {
+            for (let i = 0; i < 10; i++) {
+
+            }
+            // console.log(i);
+        })();
+
+
+        var tmp = 123;
+
+        if (true) {
+            // tmp = 'abc'; // ReferenceError
+            let tmp;
+        }
+        console.log(tmp);
+
+        var a;
+        console.log(window);
+
+        {
+            if (a) {
+                console.log(a);
+            }
+            let a = 1; // 凡是在声明之前就使用这些变量，就会报错
+        }
+
+    </script>
+</body>
+
+</html>

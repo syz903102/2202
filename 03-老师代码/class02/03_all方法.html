@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>New Html</title>
+</head>
+
+<body>
+    <script>
+        /*
+            all()
+                该方法提供了并行执行异步操作的能力，并且在所有异步操作执行完后并且执行结果都是成功的时候才执行回调。
+
+                当所有异步操作都执行完后且执行结果都是成功的时候执行成功的回调,有其中一个执行失败就执行失败的回调
+        */
+
+        const fn1 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log("1");
+                    resolve();
+                }, 3000)
+            })
+        }
+
+        const fn2 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log("2");
+                    reject();
+                }, 1000)
+            })
+        }
+
+        const fn3 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log("3");
+                    resolve();
+                }, 2000)
+            })
+        }
+
+        Promise.all([fn1(), fn2(), fn3()]).then(() => {
+            console.log("成功执行了"); // 都执行成功就执行
+        }, () => {
+            console.log("失败执行了"); // 其中一个执行失败就执行
+        })
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content {
+            width: 1000;
+            margin: auto;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            width: 1000px;
+            margin: auto;
+        }
+
+        td,
+        th {
+            border: 1px solid
+        }
+
+        .yeBt {
+            display: inline-block;
+            padding: 2px 6px;
+            background-color: yellowgreen;
+        }
+
+        .loading {
+            width: 200px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            display: none;
+        }
+
+        .motai {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .motai .box {
+            width: 200px;
+            height: 200px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="addBox">
+            <h2>用户信息表</h2>
+            <div>
+                姓名:
+                <input type="text" class="username" placeholder="请输入用户名">
+            </div>
+            <div>
+                年龄:
+                <input type="text" class="age" placeholder="请输入年龄">
+            </div>
+            <div>
+                <button type="button" @click="add">添加</button>
+                <button type="button" class="search1">搜索</button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <th>
+                    <input type="checkbox" class="quanXuan1">
+                </th>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>年龄<span class="paiXu">↑↓</span></th>
+                <th>时间</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button type="button" onclick="delFn()">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><button type="button" onclick="delXaun()">选中删除</button></td>
+                    <td colspan="4">
+                        <span class="touPage">首页</span>
+                        <span class="upPage">上一页</span>
+                        <span class="anniu">
+                            <span onclick="tiao()" class="yeBt">1</span>
+                        </span>
+                        <span class="nextPage">下一页</span>
+                        <span class="endPage">末页</span>
+                    </td>
+                    <td><button type="button" class="delAll1">删除全部</button></td>
+                </tr>
+
+            </tfoot>
+        </table>
+
+    </div>
+    <!-- //模态框 -->
+    <div class="motai">
+        <div class="box"></div>
+    </div>
+    <img src="/loading.gif" class="loading">
+</body>
+<script src="/jquery.min.js"></script>
+<script src="/vue/vue.min.js"></script>
+<script src="/index.js"></script>
+
+</html>

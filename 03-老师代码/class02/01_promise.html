@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>New Html</title>
+</head>
+
+<body>
+    <script>
+        /*
+            什么是promise?
+                Promise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。
+        */
+
+        const fn1 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log("1");
+                    resolve();
+                }, 3000)
+            })
+        }
+
+        const fn2 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log("2");
+                    resolve();
+                }, 1000)
+            })
+        }
+
+        const fn3 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log("3");
+                    resolve();
+                }, 2000)
+            })
+        }
+
+        fn1().then(() => {
+            return fn2();
+        }).then(() => {
+            return fn3();
+        }).then(() => {
+            console.log("执行完成了");
+        })
+
+
+
+    </script>
+</body>
+
+</html>

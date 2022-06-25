@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-text="text"></div>
+        <div v-html="html"></div>
+        <div v-once>
+            {{once}}
+        </div>
+        <div v-bind:class="d1"></div>
+        <div :class="d1"></div>
+        <div v-if="false">v-if</div>
+        <div v-show="false">v-show</div>
+        <div v-on:click="fn">123</div>
+        <button type="button" @click="fn">点击</button>
+        <a href="http://www.baidu.com" @click.prevent="fn1('百度')">百度</a>
+        <div @click="father">父级
+            <div @click="son">
+                子级
+                <a href="http://www.baidu.com" @click.prevent.stop="fn1('百度')">百度</a>
+            </div>
+        </div>
+        <input type="text" @keyup.enter="fn2">
+
+    </div>
+    <script>
+        /* 
+            v-text      渲染文本
+            v-html      渲染html
+            v-once      只渲染一次,数据更新不在改变内容
+            v-bind(:)   属性绑定
+            v-if        条件渲染
+            v-show      条件隐藏
+            v-on(@)     绑定事件
+
+            修饰符:
+                .stop               阻止事件冒泡
+                .prevent            阻止默认事件
+                .stop.prevent       可以串联
+                .enter              键别名(回车)
+                @keyup.13           键代码
+                .once               只会触发一次
+
+
+            v-if 和 v-show 的区别
+                v-show
+                    条件隐藏,HTML元素先渲染起来，符合条件就显示，不符合条件display就为none，不显示，但是元素还在
+                v-if
+                    条件渲染,符合了再渲染，否则不渲染DOM，浏览器中找不到这个DOM
+
+        */
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                text: "文本",
+                html: "<b>html</b>",
+                once: "一次性", // v-once 当前插值内容只执行第一次,更新数据也不会改变内容
+                d1: "d2" // v-bind绑定属性和变量,属性值为变量,不绑定属性值就是一个字符串 :为语法糖
+            },
+            methods: {
+                fn () {
+                    console.log("点击了")
+                },
+                fn1 (str) {
+                    console.log(str);
+                },
+                fn2 () {
+                    console.log("回车了", event)
+                },
+                father () {
+                    console.log("father")
+                },
+                son () {
+                    console.log("son");
+                }
+            },
+        })
+
+        vm.once = "123";   
+    </script>
+</body>
+
+</html>

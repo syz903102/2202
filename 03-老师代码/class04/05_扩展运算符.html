@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 扩展运算符 ...   将数组变成参数序列
+
+        let arr = [1, 2, 3];
+        let arr1 = [1, 2, 3];
+
+        console.log([...arr, ...arr1]);
+
+        let obj = { a: 1, b: 2 }
+        let obj1 = { a: 4, b: 2, c: 5 }
+
+        console.log({ ...obj, ...obj1 });
+    </script>
+</body>
+
+</html>

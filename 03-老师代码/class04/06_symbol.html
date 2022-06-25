@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // symbol是一个基本数据类型
+
+        let a = Symbol();
+        let b = Symbol();
+        console.log(a);
+
+        let obj = {};
+
+        obj[a] = "a";
+        obj[b] = "b";
+        console.log(obj)
+
+        console.log(obj[a])
+
+
+    </script>
+</body>
+
+</html>
