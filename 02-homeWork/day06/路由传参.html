@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../js/lib/vue-router.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<router-link to="/shouye/1">首页</router-link>
+			<router-link to="/zhuce/2">注册</router-link>
+			<router-link to="/denglu/3"> 登录 </router-link>
+			<hr />
+			<router-view></router-view>
+		</div>
+		<script>
+			let shouye = {
+				template: `
+                    <div>
+                        首页
+                        <br>
+                        {{$route.params.id}}
+                    </div>
+                `,
+			};
+			let zhuce = {
+				template: `
+                    <div>
+                        注册
+                        <br>
+                        {{$route.params.id}}
+                    </div>
+                `,
+			};
+			let denglu = {
+				template: `
+                    <div>
+                        登录
+                        <br>
+                        {{$route.params.id}}
+                        <router-link to="/zi">子组</router-link>
+                        <hr>
+				        <router-view></router-view>
+                    </div>
+                `,
+			};
+			let zi = {
+				template: `
+                    <p>子组件</p>
+                `,
+			};
+			let router = new VueRouter({
+				routes: [
+					{ path: '/', redirect: '/shouye/1' },
+					{ path: '/shouye/:id', component: shouye },
+					{ path: '/zhuce/:id', component: zhuce },
+					{
+						path: '/denglu/:id',
+						component: denglu,
+						children: [{ path: '/zi', component: zi }],
+					},
+				],
+			});
+			const vm = new Vue({
+				el: '#app',
+				router,
+				data: {
+					num: 1,
+				},
+			});
+		</script>
+	</body>
+</html>

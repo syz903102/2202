@@ -1,0 +1,109 @@
+路由
+    声明式路由
+    <router-link to="/zhuce">注册</router-link>
+
+    编程式路由
+    this.$router.push()     
+        跳转到不同的url，但这个方法会向history栈添加一个记录，点击后退会返回到上一个页面。
+    this.$router.replace()  
+        跳转到指定的url，但是这个方法不会向history里面添加新的记录，点击返回，会跳转到上上一个页面。上一个记录是不存在的。
+        （A----->B(replace)----->C(返回) 结果B被C替换 A----->C(history栈),从C返回返回到了A,B不存在于历史栈中）
+    this.$router.go(n)
+
+    /*
+        history.go(-1)      -1 后退一步 1 前进一步
+        history.back()      返回
+        history.forward()   前进
+    */
+
+    路由占位符
+    <router-view></router-view>
+
+    创建路由对象
+    let router = new VueRouter({
+        routes: [  // 定义路由
+            { path: "/", redirect: "/zhuce" }, // 路由重定向(页面第一次加载时跳转到某个路由)
+            { path: "/zhuce", component: zhuce },   // component 路由对应的组件
+            { path: "/shejiao", component: shejiao }
+        ]
+    })
+
+    挂载路由到vue上
+    new Vue({
+        el:"#app",
+        router
+    })
+
+嵌套子路由
+
+    {
+        path: "/ziluyou",
+        component: ziluyou,
+        children: [ // 嵌套路由要使用children
+            { path: "/ziluyou", redirect: "/ziluyou/zi1" },
+            { path: "/ziluyou/zi1", component: zi1 },
+            { path: "/ziluyou/zi2", component: zi2 }
+        ]
+    }
+
+路由传参
+    方式一:
+
+        在url显示参数
+
+            <router-link to="/zhuce/1">注册</router-link>
+            <router-link :to="'/zhuce/'+num">注册</router-link>
+
+            this.$router.push({
+                path: "/zhuce/3"
+            })
+
+            { path: "/zhuce/:id", component: zhuce },
+
+            使用方式: {{$route.params.id}}
+    
+    方式二:
+
+        不显示参数
+
+            name和params一起使用,相当于ajax中的post请求
+
+            <router-link :to="{name:'Shejiao',params:{id:2}}">社交</router-link>
+
+            this.$router.push({
+                name: "Zhuce",
+                params: {
+                    id: 3
+                }
+            })
+
+            { path: "/shejiao", name: "Shejiao", component: shejiao }
+
+            使用方式: {{$route.params.id}}
+
+    方式三:
+
+        显示参数
+
+            path和query一起使用,相当于ajax中的get请求
+
+            <router-link :to="{path:'/zhuce',query:{id:2}}">注册</router-link>
+
+            this.$router.push({
+                path: "/zhuce",
+                query: {
+                    id: 3
+                }
+            })
+
+            使用方式: {{$route.query.id}}
+
+
+    // 字符串
+    this.$router.push('/index') 
+    // 对象
+    this.$router.push({path:'/index'})
+    // 带查询参数，变成/backend/order?selected=2/，query传参
+    this.$router.push({path:'/index', query:{name: '123'} })
+    // 命名的路由 params传参
+    this.$router.push({name:'index', params:{name: '123'} })

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <!-- 1 -->
+    <script src="./lib/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 声明式路由 -->
+        <router-link to="/zhuce">注册</router-link>
+        <router-link to="/shejiao">社交</router-link>
+        <hr>
+        <!-- 路由占位符 -->
+        <router-view></router-view>
+    </div>
+    <script>
+        let zhuce = {
+            template: `<div>注册</div>`
+        }
+        let shejiao = {
+            template: `<div>社交</div>`
+        }
+
+        // 2
+        // 创建路由对象
+        let router = new VueRouter({
+            routes: [
+                { path: "/", redirect: "/zhuce" }, // 路由重定向(页面第一次加载时跳转到某个路由)
+                { path: "/zhuce", component: zhuce },
+                { path: "/shejiao", component: shejiao }
+            ]
+        })
+
+
+        var vm = new Vue({
+            el: '#app',
+            router,  // 挂载路由到vue上
+            data: {
+
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+
+</html>

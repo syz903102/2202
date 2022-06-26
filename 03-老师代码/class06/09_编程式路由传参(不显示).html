@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 声明式路由 -->
+        <router-link :to="zhuce">注册</router-link>
+        <router-link :to="{name:'Shejiao',params:{id:2}}">社交</router-link>
+        <button type="button" @click="zhuce">注册</button>
+        <button type="button" @click="shejiao">社交</button>
+        <hr>
+        <!-- 路由占位符 -->
+        <router-view></router-view>
+    </div>
+    <script>
+        let zhuce = {
+            template: `<div>注册{{$route.params.id}}</div>`
+        }
+        let shejiao = {
+            template: `<div>社交{{$route.params.id}}</div>`
+        }
+
+        // 创建路由对象
+        let router = new VueRouter({
+            routes: [
+                { path: "/", redirect: "/zhuce" },
+                { path: "/zhuce", name: "Zhuce", component: zhuce },
+                { path: "/shejiao", name: "Shejiao", component: shejiao }
+            ]
+        })
+
+
+        var vm = new Vue({
+            el: '#app',
+            router,  // 挂载路由到vue上
+            data: {
+                zhuce: { name: 'Zhuce', params: { id: 1 } }
+            },
+            methods: {
+                zhuce () {
+                    // 编程式路由
+                    this.$router.push({
+                        name: "Zhuce",
+                        params: {
+                            id: 3
+                        }
+                    })
+                },
+                shejiao () {
+                    // 编程式路由
+                    this.$router.push({
+                        name: "Shejiao",
+                        params: {
+                            id: 4
+                        }
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

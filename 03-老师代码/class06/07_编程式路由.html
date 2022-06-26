@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button type="button" @click="zhuce">注册</button>
+        <button type="button" @click="shejiao">社交</button>
+        <hr>
+        <!-- 路由占位符 -->
+        <router-view></router-view>
+    </div>
+    <script>
+        let zhuce = {
+            template: `<div>注册</div>`
+        }
+        let shejiao = {
+            template: `<div>社交</div>`
+        }
+
+        // 创建路由对象
+        let router = new VueRouter({
+            routes: [
+                { path: "/", redirect: "/zhuce" },
+                { path: "/zhuce", component: zhuce },
+                { path: "/shejiao", component: shejiao }
+            ]
+        })
+
+
+        var vm = new Vue({
+            el: '#app',
+            router,  // 挂载路由到vue上
+            data: {
+
+            },
+            methods: {
+                zhuce () {
+                    // 编程式路由
+                    this.$router.push({
+                        path: "/zhuce"
+                    })
+                },
+                shejiao () {
+                    // 编程式路由
+                    this.$router.push({
+                        path: "/shejiao"
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

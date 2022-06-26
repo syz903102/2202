@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ken>
+            <template slot-scope="a">
+                {{a.usernames.firstname}}
+                {{a.content1}}
+            </template>
+        </ken>
+    </div>
+    <script>
+        /* 
+            插槽:
+                <组件名>插槽内容</组件名>
+                模板:  <slot></slot> (占位符_占组件里边的内容)(内容替换slot)
+                       <slot>内容</slot> slot里边有默认值(当组件中内容为空时使用slot里边的默认内容)
+                       slot里面的默认值,当组件中间没有任何内容才会使用默认
+
+            作用域插槽:
+
+                在组件模板中书写所需slot插槽，并将当前组件的数据通过v-bind绑定在slot标签上。
+                在组件使用时，通过slot-scope=“scope”,接收组件中slot标签上绑定的数据。
+                通过scope.xxx就可以使用绑定数据了
+
+        */
+        Vue.component("ken", {
+            data () {
+                return {
+                    content: "子组件content",
+                    users: {
+                        firstname: "duan"
+                    }
+                }
+            },
+            template: `
+                <div>
+                    <slot :usernames="users" :content1="content"></slot>
+                </div>
+            `
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                content: "父组件content"
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+
+</html>

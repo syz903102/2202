@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    <script src="../../js/lib/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/shouye/1">首页</router-link>
+        <router-link to="/zhuce/1">注册</router-link>
+        <router-link to="/denglu/1">登录</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        let shouye = {
+            template: `
+                    <div>首页</div>
+                `,
+        };
+        let zhuce = {
+            template: `
+                    <div>注册</div>
+                `,
+        };
+        let denglu = {
+            template: `
+                    <div>登录</div>
+                `,
+        };
+        let router = new VueRouter({
+            routes: [
+                { path: '/', redirect: '/shouye/1' },
+                { path: '/shouye/:id', component: shouye },
+                { path: '/zhuce/:id', component: zhuce },
+                { path: '/denglu/:id', component: denglu },
+            ],
+        });
+        const vm = new Vue({
+            el: '#app',
+            router,
+        });
+    </script>
+</body>
+
+</html>

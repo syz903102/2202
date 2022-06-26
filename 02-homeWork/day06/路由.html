@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../js/lib/vue-router.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 声明式路由 -->
+			<router-link to="/shouYe/首页参数">首页</router-link>
+			<router-link to="/zhuce/注册参数">注册</router-link>
+			<router-link to="/denglu/登录参数">登录</router-link>
+			<hr />
+			<router-view></router-view>
+		</div>
+		<script>
+			let shouye = {
+				template: `
+                    <div>
+                        首页
+                       <div>
+                           <i> {{$route.params.id}}</i>
+                        </div>
+                    </div>
+                `,
+			};
+			let zhuce = {
+				template: `
+                <div>
+                        注册
+                       <div>
+                           <i> {{$route.params.id}}</i>
+                        </div>
+                    </div>
+                `,
+			};
+			let denglu = {
+				template: `
+                <div>
+                        登录
+                       <div>
+                           <i> {{$route.params.id}}</i>
+                        </div>
+                    </div>
+                `,
+			};
+			//创建路由对象
+			let router = new VueRouter({
+				routes: [
+					{ path: '/', redirect: '/shouYe/首页参数' },
+					{ path: '/shouYe/:id', component: shouye },
+					{ path: '/zhuce/:id', component: zhuce },
+					{ path: '/denglu/:id', component: denglu },
+				],
+			});
+			let vm = new Vue({
+				el: '#app',
+				router,
+				data: {
+					num: 1,
+				},
+				methods: {},
+			});
+		</script>
+	</body>
+</html>
