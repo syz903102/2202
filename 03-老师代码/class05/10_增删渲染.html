@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model="username" placeholder="请输入姓名">
+            <input type="text" v-model.number="age" placeholder="请输入年龄">
+            <button type="button" @click="add">添加</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in arr" :key="item.id">
+                    <td>{{index+1}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.age}}</td>
+                    <td>
+                        <button type="button" @click="del(item.id)">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                username: "",
+                age: "",
+                arr: []
+            },
+            methods: {
+                add () {
+                    this.arr.push({
+                        id: new Date().getTime(),
+                        username: this.username,
+                        age: this.age
+                    })
+                    this.username = "";
+                    this.age = "";
+                },
+                del (id) {
+                    /* 
+                        形参 => 默认return返回的值
+                        形参 => {
+                            return 值
+                        }
+                    */
+                    // let index = this.arr.findIndex(item => item.id == id);
+                    let index = this.arr.findIndex(function (item) {
+                        return item.id == id;
+                    })
+                    this.arr.splice(index, 1);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="flag = !flag"> 切换 </button>
+        <Hello v-if="flag"></Hello>
+        <Hello1></Hello1>
+    </div>
+    <template id="hello">
+        <div>
+            hello
+        </div>
+    </template>
+    <template id="hello1">
+        <div class="hello-box">
+            <button @click="clear"> 销毁 </button>
+            hello
+        </div>
+    </template>
+    <script>
+        Vue.component('Hello', {
+            template: '#hello',
+            mounted () {
+                this.time = setInterval(() => {
+                    console.log('aaaa')
+                }, 1000)
+            },
+            beforeDestroy () {
+                console.log('beforeDestroy')
+                clearInterval(this.time)
+            },
+            destroyed () {
+                console.log('destroyed')
+            }
+        })
+
+        Vue.component('Hello1', {
+            template: '#hello1',
+            methods: {
+                clear () {
+                    this.$destroy()
+                }
+            },
+            mounted () {
+                this.time = setInterval(() => {
+                    console.log('aaaa');
+                }, 1000)
+            },
+            beforeDestroy () {
+                console.log('beforeDestroy')
+                clearInterval(this.time)
+                document.querySelector('.hello-box').remove()
+            },
+            destroyed () {
+                console.log('destroyed')
+            }
+        })
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                flag: true
+            }
+        })
+    </script>
+</body>
+
+</html>

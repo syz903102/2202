@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ken666></ken666>
+        <component-a></component-a>
+    </div>
+    <script>
+        Vue.component("ken666", { // 全局注册组件
+            data () {
+                return {
+                    a: 1,
+                    sex: "0"
+                }
+            },
+            template: `<div>
+                            1<button type="button" @click="a++">按钮</button>{{a}}
+                            <div>
+                                <input type="radio" name="sex" value="0" v-model="sex">男
+                                <input type="radio" name="sex" value="1" v-model="sex">女
+                            </div>
+                        </div>`
+        })
+
+        let ComponentA = {
+            data () {
+                return {
+                    a: 1,
+                    sex: "0"
+                }
+            },
+            template: `<div>
+                            2<button type="button" @click="a++">按钮</button>{{a}}
+                            <div>
+                                <input type="radio" name="sex" value="0" v-model="sex">男
+                                <input type="radio" name="sex" value="1" v-model="sex">女
+                            </div>
+                        </div>`
+        }
+
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好"
+            },
+            components: { // 局部注册组件
+                "component-a": ComponentA
+            }
+        })
+    </script>
+</body>
+
+</html>

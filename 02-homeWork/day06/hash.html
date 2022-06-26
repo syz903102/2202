@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="../../js/vue.min.js"></script>
+	</head>
+	<body>
+		<a href="#zhuCe">注册</a>
+		<a href="#sheJiao">社交</a>
+		<a href="#pengYou">朋友</a>
+		<a href="#my">我的</a>
+		<hr />
+		<div id="app">
+			<component :is="a"></component>
+		</div>
+	</body>
+	<script>
+		let zhuCe = {
+			template: `
+                <div>注册</div>
+            `,
+		};
+		let sheJiao = {
+			template: `
+                <div>社交</div>
+            `,
+		};
+		let pengYou = {
+			template: `
+                <div>朋友</div>
+            `,
+		};
+		let my = {
+			template: `
+                <div>我的</div>
+            `,
+		};
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				a: 'zhuCe',
+			},
+			components: {
+				zhuCe,
+				sheJiao,
+				pengYou,
+				my,
+			},
+		});
+		window.onhashchange = () => {
+			vm.a = location.hash.slice(1);
+		};
+	</script>
+</html>

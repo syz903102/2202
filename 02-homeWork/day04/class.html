@@ -6,25 +6,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
 </head>
 
 <body>
+    <div id="app">
+        <input type="text" v-model="username" placeholder="请输入姓名">
+        <input type="text" v-model="age" placeholder="请输入年龄">
+        <button type="button" @click="add">添加</button>
+        <table>
+            <thead>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in arr" :key="item.id">
+                    <td>{{index+1}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.age}}</td>
+                    <td>
+                        <button type="button" @click="del(item.id)">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <script>
-        class Person {
-            constructor(name, age) {
-                this.name = name;
-                this.age = age;
-            }
-            sayName () {
-                console.log(this.name);
-            }
-            sayAge () {
-                console.log(this.age);
-            }
-        }
-        var fn = new Person('孙元志', 18);
-        
-        console.log(fn.say());
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                username: '',
+                age: '',
+                arr: []
+            },
+            methods: {
+                add () {
+                    this.arr.push({
+                        username: this.username,
+                        age: this.age,
+                        id: new Date().getTime()
+                    }),
+                        this.username = '',
+                        this.age = ''
+                },
+                del (id) {
+                    var index = this.arr.findIndex(item => item.id === id)
+                    this.arr.splice(index, 1)
+                }
+            },
+
+        });
     </script>
 </body>
 

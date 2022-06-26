@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="lib/jq.js"></script>
+</head>
+<body>
+<script>
+$(function(){
+	$.ajax({
+		url:"http://www.liulongbin.top:3005/api/getnewslist",
+		success:function(data){
+			console.log(data);
+		}
+	})
+})
+</script>	
+</body>
+</html>

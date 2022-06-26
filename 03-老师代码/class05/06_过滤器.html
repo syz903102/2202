@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{msg}}
+        {{msg | msgFn("1","2")}}
+        {{sex | sexFn}}
+
+    </div>
+    <script>
+        /* 
+
+            {{msg | msgFn(1,2)}}
+
+            filters: {
+                方法名:function(value,num1,num2){ // value是管道符前面的值
+                    return 值;
+                }
+            }
+        */
+        Vue.filter("sexFn", function (value) {
+            console.log(value);
+            return value == "0" ? "男" : "女";
+        })
+
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好",
+                sex: "0"
+            },
+            filters: {
+                msgFn: function (value, num1, num2) {
+                    console.log(value, num1, num2);
+                    return value.split("").join("-");
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
